@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.edu";
+option java_outer_classname = "CasaDoCodigoGrpc";
+option objc_class_prefix = "HLW";
+
+package br.com.edu;
+
+service UsuarioGrpcService {
+  rpc cadastrar (UsuarioRequest) returns (UsuarioResponse) {}
+}
+
+service CategoriaGrpcService {
+  rpc cadastrar (CategoriaRequest) returns (CategoriaResponse) {}
+}
+
+message CategoriaRequest {
+  string nome = 1;
+}
+
+message CategoriaResponse {
+  int64 id = 1;
+  string nome = 2;
+}
+
+/**
+  Usuario
+ */
+message UsuarioRequest {
+  string login = 1;
+  string senha = 2;
+}
+
+message UsuarioResponse {
+  int64 id = 1;
+  string login = 2;
+  string dataCriacao = 3;
+}
