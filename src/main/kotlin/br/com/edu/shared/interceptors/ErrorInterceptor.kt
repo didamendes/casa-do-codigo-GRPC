@@ -1,6 +1,7 @@
 package br.com.edu.shared.interceptors
 
 import br.com.edu.shared.exception.JaExistente
+import br.com.edu.shared.exception.NenhumResultadoEncontrado
 import io.grpc.Status
 import io.grpc.StatusRuntimeException
 import io.grpc.stub.StreamObserver
@@ -24,6 +25,7 @@ class ErrorInterceptor: MethodInterceptor<Any, Any> {
             val status = when(e) {
                 is ConstraintViolationException -> Status.INVALID_ARGUMENT.withCause(e).withDescription(e.message)
                 is JaExistente -> Status.INVALID_ARGUMENT.withCause(e).withDescription(e.message)
+                is NenhumResultadoEncontrado -> Status.NOT_FOUND.withCause(e).withDescription(e.message)
                 else -> Status.UNKNOWN.withCause(e).withDescription("um erro inesperado aconteceu")
             }
 

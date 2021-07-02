@@ -15,6 +15,61 @@ service CategoriaGrpcService {
   rpc cadastrar (CategoriaRequest) returns (CategoriaResponse) {}
 }
 
+service AutorGrpcService {
+  rpc cadastrar (AutorRequest) returns (AutorResponse) {}
+}
+
+service LivroGrpcService {
+  rpc cadastrar (LivroRequest) returns (LivroResponse) {}
+}
+
+/**
+  Livro
+ */
+message LivroRequest {
+  string titulo = 1;
+  string resumo = 2;
+  string sumario = 3;
+  string preco = 4;
+  int32 paginas = 5;
+  string isbn = 6;
+  int64 idCategoria = 7;
+  int64 idAutor = 8;
+  string dataPublicacao = 9;
+}
+
+message LivroResponse {
+  int64 id = 1;
+  string titulo = 2;
+  string resumo = 3;
+  string sumario = 4;
+  string preco = 5;
+  int32 paginas = 6;
+  string isbn = 7;
+  string categoria = 8;
+  string autor = 9;
+  string dataPublicacao = 10;
+}
+
+/**
+  Autor
+ */
+message AutorRequest {
+  string nome = 1;
+  string email = 2;
+  string descricao = 3;
+}
+
+message AutorResponse {
+  int64 id = 1;
+  string nome = 2;
+  string email = 3;
+  string descricao = 4;
+}
+
+/**
+  Categoria
+ */
 message CategoriaRequest {
   string nome = 1;
 }
